@@ -1,8 +1,9 @@
 import graphene
 import accounts.schema
+import products.schema
 
 
-class Query(accounts.schema.Query,graphene.ObjectType):
+class Query(accounts.schema.Query,products.schema.Query,graphene.ObjectType):
     pass
 
 class Mutation(accounts.schema.Mutation,graphene.ObjectType):
