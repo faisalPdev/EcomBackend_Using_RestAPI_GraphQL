@@ -66,6 +66,7 @@ class DeleteUser(graphene.Mutation):
         except models.CustomUser.DoesNotExist:
             raise Exception("User Not Exist")
 
+
 class UpdateUser(graphene.Mutation):
     class Arguments:
         id=graphene.Int(required=True)
@@ -105,13 +106,6 @@ class UpdateUser(graphene.Mutation):
 
 #     def mutate(root,info,email):
 
-
-
-        
-            
-
-
-        
 class Mutation(graphene.ObjectType):
     token_auth=graphql_jwt.ObtainJSONWebToken.Field()
     refresh_token=graphql_jwt.Refresh.Field()

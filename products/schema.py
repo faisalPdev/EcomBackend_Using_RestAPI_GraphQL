@@ -151,11 +151,9 @@ class UpdateProduct(graphene.Mutation):
                 product_images.save()
 
             return UpdateProduct(product=product)
-
-
-            return UpdateProduct(product=product)
+        
         except models.Product.DoesNotExist:
-            raise Exception("Product Not Exist")
+            raise Exception("Product Does Not Exist")
         except Exception as e:
             raise Exception(f"An error occured: {str(e)}")
 
