@@ -128,7 +128,7 @@ class UpdateProduct(graphene.Mutation):
 
 
             for key, value in kwargs.items():
-                if key not in ['image1','image2','image3']:
+                if key not in ['image1','image2','image3']: #skip images for now
                     if value is not None:
                         setattr(product,key,value)
             product.save()

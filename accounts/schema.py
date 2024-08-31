@@ -52,6 +52,8 @@ class RegisterUser(graphene.Mutation):
 
         return RegisterUser(user=user)
     
+
+    
 class DeleteUser(graphene.Mutation):
     class Arguments:
         id=graphene.Int(required=True)
