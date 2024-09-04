@@ -47,6 +47,7 @@ class Query(graphene.ObjectType):
 
     product_by_slug=graphene.Field(ProductType,slug=graphene.String(required=True))
 
+
     def resolve_all_products(root,info):
         try:
             return models.Product.objects.prefetch_related('images').all()
@@ -99,6 +100,7 @@ class DeleteProduct(graphene.Mutation):
         id=graphene.Int(required=True)
 
     success=graphene.Boolean()
+
     def mutate(root,info,id):
         try:
             product=models.Product.objects.get(id=id)
@@ -110,6 +112,7 @@ class DeleteProduct(graphene.Mutation):
         except Exception as e:
             raise Exception(f"An error occured: {str(e)}")
         
+
 class UpdateProduct(graphene.Mutation):
     class Arguments:
         id=graphene.Int(required=True)
@@ -133,6 +136,7 @@ class UpdateProduct(graphene.Mutation):
                         setattr(product,key,value)
             product.save()
 
+
             # handle image uploads
             images_updated = False  # Track if any images are updated
             product_images, created = models.ProductImages.objects.get_or_create(product=product)
@@ -147,6 +151,7 @@ class UpdateProduct(graphene.Mutation):
                 product_images.image3 = kwargs['image3']
                 images_updated = True
             
+
             if images_updated:
                 product_images.save()
 
@@ -164,6 +169,7 @@ class Mutation(graphene.ObjectType):
     create_product=CreateProduct.Field()
     delete_product=DeleteProduct.Field()
     update_product=UpdateProduct.Field()
+    
         
         
         
